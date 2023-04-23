@@ -1,0 +1,30 @@
+{
+  "name": "vaened/laravel-criteria",
+  "description": "Search engine builder for eloquent",
+  "keywords": [
+    "search",
+    "criteria",
+    "laravel",
+    "vaened",
+    "enea"
+  ],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Vaened\\Criteria\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Enea Dhack",
+      "email": "enea.so@live.com"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "vaened/php-criteria-core": "^0.2.0",
+    "laravel/framework": "^9.52",
+    "vaened/support": "^0.2.0",
+    "lambdish/phunctional": "^2.1"
+  }
+}
