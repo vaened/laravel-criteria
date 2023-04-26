@@ -7,25 +7,13 @@ declare(strict_types=1);
 
 namespace Vaened\Criteria\Evaluators;
 
+use Vaened\CriteriaCore\Directives\Expression;
+use Vaened\CriteriaCore\Directives\Filter;
+use Vaened\CriteriaCore\Directives\Scope;
 
-final class Field
+interface Field
 {
-    public function __construct(private readonly string $field, private readonly Aspect $aspect)
-    {
-    }
+    public function match(string $value): bool;
 
-    public static function is(string $field, Aspect $aspect): self
-    {
-        return new self($field, $aspect);
-    }
-
-    public function name(): string
-    {
-        return $this->field;
-    }
-
-    public function aspect(): Aspect
-    {
-        return $this->aspect;
-    }
+    public function solve(string $value): Scope|Expression|Filter;
 }

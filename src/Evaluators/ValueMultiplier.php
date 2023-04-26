@@ -9,10 +9,10 @@ namespace Vaened\Criteria\Evaluators;
 
 use Vaened\Criteria\OperatorCannotBeConvertedToMultiple;
 use Vaened\CriteriaCore\Keyword\FilterOperator;
+use Vaened\Support\Types\ArrayList;
 
 use function array_key_exists;
 use function explode;
-use function Lambdish\Phunctional\map;
 use function str_contains;
 use function trim;
 
@@ -51,10 +51,11 @@ final class ValueMultiplier
 
     public static function format(Aspect $aspect, string $value): array
     {
-        return map(
-            fn(string $val) => $aspect->formatValue(trim($val)),
-            explode(self::SEPARATOR, $value)
-        );
+        return ArrayList::from(explode(self::SEPARATOR, $value))
+            ->map(static fn(string $val) => trim($value))
+            ->filter(static fn(string $val) => $aspect->evaluate($val))
+            ->map(static fn(string $val) => $aspect->formatValue($val))
+            ->values();
     }
 
     private static function supportedOperators(): array
