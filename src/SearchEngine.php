@@ -10,6 +10,7 @@ namespace Vaened\Criteria;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Vaened\Criteria\Eloquent\Adapters\ExistRelation;
 use Vaened\Criteria\Eloquent\Adapters\QueryAdapter;
 use Vaened\Criteria\Eloquent\Adapters\QueryAdapters;
 use Vaened\Criteria\Eloquent\CriteriaMapper;
@@ -85,12 +86,9 @@ abstract class SearchEngine
         return $this->compoundQuery()->first();
     }
 
-    protected function compoundQuery(): EloquentBuilder
+    protected function exist(string $relation): void
     {
-        return $this->mapper()->apply(
-            query: $this->query()->with($this->preload)->without($this->unload),
-            hydrators: QueryAdapters::from($this->hydrators)
-        );
+        $this->adapt(new ExistRelation($relation));
     }
 
     protected function apply(Scope|Expression|Filter $criteria): void
@@ -101,6 +99,14 @@ abstract class SearchEngine
     protected function adapt(QueryAdapter $hydrator): void
     {
         $this->hydrators[] = $hydrator;
+    }
+
+    protected function compoundQuery(): EloquentBuilder
+    {
+        return $this->mapper()->apply(
+            query: $this->query()->with($this->preload)->without($this->unload),
+            hydrators: QueryAdapters::from($this->hydrators)
+        );
     }
 
     private function mapper(): CriteriaMapper
