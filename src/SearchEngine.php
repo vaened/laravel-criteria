@@ -32,11 +32,7 @@ abstract class SearchEngine
 
     protected int $limit = 0;
 
-    private array $local = [];
-
     private array $criterias = [];
-
-    private array $scopes = [];
 
     private array $hydrators = [];
 
@@ -102,11 +98,6 @@ abstract class SearchEngine
         $this->criterias[] = $criteria;
     }
 
-    protected function on(Scope $scope): void
-    {
-        $this->scopes[] = $scope;
-    }
-
     protected function adapt(QueryAdapter $hydrator): void
     {
         $this->hydrators[] = $hydrator;
@@ -120,10 +111,7 @@ abstract class SearchEngine
     private function criteria(): Criteria
     {
         return new Criteria(
-            [
-                ...$this->scopes,
-                ...$this->criterias,
-            ],
+            $this->criterias,
             $this->order,
             $this->limit,
         );
