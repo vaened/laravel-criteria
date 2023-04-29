@@ -10,6 +10,8 @@ namespace Vaened\Criteria\Concerns;
 use Vaened\Criteria\Filtrator;
 use Vaened\Criteria\FlagBag;
 use Vaened\Criteria\SearchEngine;
+use Vaened\CriteriaCore\Directives\Expression;
+use Vaened\CriteriaCore\Directives\Filter;
 use Vaened\CriteriaCore\Directives\Scope;
 
 use function Lambdish\Phunctional\each;
@@ -27,7 +29,7 @@ trait Flagable
     {
         $criterias = $this->filtrator()->only($flags);
 
-        each(fn(Scope $scope) => $this->apply($scope), $criterias);
+        each(fn(Scope|Expression|Filter $criteria) => $this->apply($criteria), $criterias);
 
         return $this;
     }
