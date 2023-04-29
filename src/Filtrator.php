@@ -14,7 +14,7 @@ abstract class Filtrator
 {
     abstract public function flags(): FilterBag;
 
-    protected function only(FlagBag $flags): array
+    public function only(FlagBag $flags): array
     {
         return map(
             fn(callable $criteria) => apply($criteria),
