@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateLaravelSearcherTestTables extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('patients', function (Blueprint $table): void {
+            $table->increments('id');
+            $table->string('name', 60);
+            $table->char('document', 8)->unique();
+            $table->char('history', 8)->unique();
+            $table->dateTime('affiliated_at');
+            $table->dateTime('deleted_at')->nullable();
+            $table->text('observation')->nullable();
+        });
+
+        Schema::create('accounts', function (Blueprint $table): void {
+            $table->unsignedInteger('patient_id')->primary();
+            $table->foreign('patient_id')->references('id')->on('patients');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('hospitalizations');
+        Schema::dropIfExists('patients');
+    }
+}

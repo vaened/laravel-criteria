@@ -1,0 +1,62 @@
+<?php
+/**
+ * Created by enea dhack - 13/07/2020 19:46.
+ */
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
+use Vaened\Criteria\Tests\Utils\Models\Account;
+use Vaened\Criteria\Tests\Utils\Models\Patient;
+
+class LaravelSearcherTestSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $records = [
+            [
+                'name' => 'Aiko',
+                'document' => '12345678',
+                'history' => '00000001',
+                'observation' => 'repeated observation',
+                'affiliated_at' => '4001-01-01 10:00:00',
+                'deleted_at' => null,
+                'account' => false,
+            ],
+            [
+                'name' => 'Hanae',
+                'document' => '96325874',
+                'history' => '00000002',
+                'observation' => 'repeated observation',
+                'affiliated_at' => '4001-01-02 12:00:00',
+                'deleted_at' => null,
+                'account' => false,
+            ],
+            [
+                'name' => 'Hanako',
+                'document' => '87654321',
+                'history' => '00000003',
+                'observation' => 'different observation',
+                'affiliated_at' => '4001-01-03 14:00:00',
+                'deleted_at' => null,
+                'account' => true,
+            ],
+            [
+                'name' => 'Tetsu',
+                'document' => '14785236',
+                'history' => '00000004',
+                'observation' => 'another different observation',
+                'affiliated_at' => '4444-01-04 16:00:00',
+                'deleted_at' => '4444-01-04 16:01:00',
+                'account' => false,
+            ],
+        ];
+
+        foreach ($records as $record) {
+            $attributes = Arr::except($record, ['account']);
+            $patient = Patient::query()->create($attributes);
+            if ($record['account'] == true) {
+                Account::query()->create(['patient_id' => $patient->getKey()]);
+            }
+        }
+    }
+}
