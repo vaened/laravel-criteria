@@ -23,6 +23,7 @@ class Searcher extends SearchEngine
         private readonly IndexRepository $index,
         private readonly FlagFiltrator   $filter
     ) {
+        $this->apply(Criterias\PatientDeletionDate::without());
     }
 
     public function affiliatedBetween(DateTimeInterface $start, DateTimeInterface $end): self
@@ -97,7 +98,7 @@ class Searcher extends SearchEngine
 
     protected function query(): Builder
     {
-        return Patient::query()->whereNull('deleted_at');
+        return Patient::query();
     }
 
     protected function filtrator(): Filtrator
