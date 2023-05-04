@@ -11,13 +11,13 @@ use Vaened\Criteria\indexer;
 use Vaened\Criteria\Tests\Utils\Criterias\PatientIdentityDocument;
 use Vaened\Criteria\Tests\Utils\Criterias\PatientName;
 
-class IndexProvider extends indexer
+class IndexRepository extends indexer
 {
     public function indexes(): FilterBag
     {
         return FilterBag::open()
-            ->register(Indexes::Name, $this->nameStartsWith())
-            ->register(Indexes::Document, $this->documentIsEqualsTo());
+            ->register(PatientIndex::Name, $this->nameStartsWith())
+            ->register(PatientIndex::Document, $this->documentIsEqualsTo());
     }
 
     protected function documentIsEqualsTo(): Closure

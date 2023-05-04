@@ -5,7 +5,7 @@
 
 namespace Vaened\Criteria\Tests\Utils;
 
-enum Indexes: string
+enum PatientIndex: string
 {
     case Document = 'Identification Document';
 

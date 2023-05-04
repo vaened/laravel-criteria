@@ -11,10 +11,10 @@ namespace Vaened\Criteria\Tests\Utils;
  * @package Tests\Unit\Components\Searcher\Utils
  * @author enea dhack <enea.so@live.com>
  *
- * @method static Filter Observed()
- * @method static Filter WithAccount()
+ * @method static PatientFlag Observed()
+ * @method static PatientFlag WithAccount()
  */
-enum Filter: string
+enum PatientFlag: string
 {
     case Observed    = 'Observed';
 

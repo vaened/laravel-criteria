@@ -19,8 +19,10 @@ class Searcher extends SearchEngine
 {
     use Flagable, Indexed;
 
-    public function __construct(private readonly IndexProvider $index, private readonly FilterProvider $filter)
-    {
+    public function __construct(
+        private readonly IndexRepository $index,
+        private readonly FlagFiltrator   $filter
+    ) {
     }
 
     public function affiliatedBetween(DateTimeInterface $start, DateTimeInterface $end): self

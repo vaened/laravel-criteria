@@ -11,13 +11,13 @@ use Vaened\Criteria\Filtrator;
 use Vaened\Criteria\Tests\Utils\Criterias\PatientObservation;
 use Vaened\Criteria\Tests\Utils\Criterias\PatientScope;
 
-class FilterProvider extends Filtrator
+class FlagFiltrator extends Filtrator
 {
     public function flags(): FilterBag
     {
         return FilterBag::open()
-            ->register(Filter::Observed, $this->onlyObserved())
-            ->register(Filter::WithAccount, $this->onlyWithAccount());
+            ->register(PatientFlag::Observed, $this->onlyObserved())
+            ->register(PatientFlag::WithAccount, $this->onlyWithAccount());
     }
 
     private function onlyObserved(): Closure
