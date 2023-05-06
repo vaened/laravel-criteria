@@ -55,7 +55,7 @@ class SearcheableTest extends DataBaseTestCase
 
     public function test_search_by_history(): void
     {
-        $result = $this->searcher()->historyEqualsTo('00000003');
+        $result = $this->searcher()->historyEqualsTo('0000003');
         $this->assertCount(1, $result->get());
     }
 

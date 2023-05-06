@@ -12,7 +12,7 @@ class CreateLaravelSearcherTestTables extends Migration
             $table->increments('id');
             $table->string('name', 60);
             $table->char('document', 8)->unique();
-            $table->char('history', 8)->unique();
+            $table->char('history', 7)->unique();
             $table->dateTime('affiliated_at');
             $table->dateTime('deleted_at')->nullable();
             $table->text('observation')->nullable();

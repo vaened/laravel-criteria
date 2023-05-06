@@ -16,7 +16,7 @@ class LaravelSearcherTestSeeder extends Seeder
             [
                 'name' => 'Aiko',
                 'document' => '12345678',
-                'history' => '00000001',
+                'history' => '0000001',
                 'observation' => 'repeated observation',
                 'affiliated_at' => '4001-01-01 10:00:00',
                 'deleted_at' => null,
@@ -25,7 +25,7 @@ class LaravelSearcherTestSeeder extends Seeder
             [
                 'name' => 'Hanae',
                 'document' => '96325874',
-                'history' => '00000002',
+                'history' => '0000002',
                 'observation' => 'repeated observation',
                 'affiliated_at' => '4001-01-02 12:00:00',
                 'deleted_at' => null,
@@ -34,7 +34,7 @@ class LaravelSearcherTestSeeder extends Seeder
             [
                 'name' => 'Hanako',
                 'document' => '87654321',
-                'history' => '00000003',
+                'history' => '0000003',
                 'observation' => 'different observation',
                 'affiliated_at' => '4001-01-03 14:00:00',
                 'deleted_at' => null,
@@ -43,7 +43,7 @@ class LaravelSearcherTestSeeder extends Seeder
             [
                 'name' => 'Tetsu',
                 'document' => '14785236',
-                'history' => '00000004',
+                'history' => '0000004',
                 'observation' => 'another different observation',
                 'affiliated_at' => '4444-01-04 16:00:00',
                 'deleted_at' => '4444-01-04 16:01:00',
