@@ -7,6 +7,8 @@ namespace Vaened\Criteria\Tests\Utils;
 
 enum PatientIndex: string
 {
+    case Patient  = 'patient';
+
     case Document = 'Identification Document';
 
     case Name     = 'Full Name';
