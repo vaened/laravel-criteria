@@ -14,6 +14,11 @@
       "Vaened\\Criteria\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Vaened\\Criteria\\Tests\\": "tests/"
+    }
+  },
   "authors": [
     {
       "name": "Enea Dhack",
@@ -22,9 +27,10 @@
   ],
   "require": {
     "php": "^8.1",
-    "vaened/php-criteria-core": "^0.2.0",
+    "vaened/php-criteria-core": "^0.3.0",
     "laravel/framework": "^9.52",
     "vaened/support": "^0.2.0",
-    "lambdish/phunctional": "^2.1"
+    "lambdish/phunctional": "^2.1",
+    "orchestra/testbench": "^7.24"
   }
 }
