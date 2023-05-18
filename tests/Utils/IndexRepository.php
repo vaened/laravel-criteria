@@ -13,6 +13,7 @@ use Vaened\Criteria\indexer;
 use Vaened\Criteria\QueryStringMatcher;
 use Vaened\Criteria\Tests\Utils\Criterias\PatientIdentityDocument;
 use Vaened\Criteria\Tests\Utils\Criterias\PatientName;
+use Vaened\CriteriaCore\Keyword\FilterOperator;
 
 class IndexRepository extends indexer
 {
@@ -37,7 +38,7 @@ class IndexRepository extends indexer
     private function patientMustBe(): callable
     {
         return static fn(string $queryString) => QueryStringMatcher::of(
-            Query::shouldEqualTo(new NumericFixer(8), 'document'),
+            Query::must(target: 'document', mode: FilterOperator::Equal, expression: new NumericFixer(8)),
         )->solve($queryString) ?: PatientName::startsWith($queryString);
     }
 }
