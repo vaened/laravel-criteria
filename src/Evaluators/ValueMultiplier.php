@@ -20,9 +20,9 @@ final class ValueMultiplier
 {
     private const SEPARATOR = ',';
 
-    public static function canApplyFor(Aspect $aspect, string $value): bool
+    public static function canApplyFor(FilterOperator $operator, string $value): bool
     {
-        return str_contains($value, self::SEPARATOR) && self::isSupportedOperator($aspect->operator());
+        return str_contains($value, self::SEPARATOR) && self::isSupportedOperator($operator);
     }
 
     public static function evaluate(Aspect $aspect, string $value): bool
@@ -43,10 +43,10 @@ final class ValueMultiplier
         return array_key_exists($operator->name, self::supportedOperators());
     }
 
-    public static function transformOperator(Aspect $aspect): FilterOperator
+    public static function transform(FilterOperator $operator): FilterOperator
     {
-        return self::supportedOperators()[$aspect->operator()->name]
-            ?? throw new OperatorCannotBeConvertedToMultiple($aspect->operator());
+        return self::supportedOperators()[$operator->name]
+            ?? throw new OperatorCannotBeConvertedToMultiple($operator);
     }
 
     public static function format(Aspect $aspect, string $value): array

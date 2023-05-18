@@ -16,13 +16,21 @@ use Vaened\CriteriaCore\Statement;
 
 final class Query implements Field
 {
-    public function __construct(private readonly string $name, private readonly Aspect $aspect)
+    public function __construct(
+        private readonly string         $target,
+        private readonly FilterOperator $operator,
+        private readonly Aspect         $aspect,
+    ) {
+    }
+
+    public static function must(string $target, FilterOperator $mode, Aspect $expression): self
     {
+        return new self($target, $mode, $expression);
     }
 
     public function match(string $value): bool
     {
-        if (ValueMultiplier::canApplyFor($this->aspect, $value)) {
+        if (ValueMultiplier::canApplyFor($this->operator, $value)) {
             return ValueMultiplier::evaluate($this->aspect, $value);
         }
 
@@ -32,7 +40,7 @@ final class Query implements Field
     public function solve(string $value): Filter
     {
         return Statement::that(
-            $this->name,
+            $this->target,
             $this->operator(),
             $this->format($value)
         );
@@ -40,16 +48,16 @@ final class Query implements Field
 
     private function operator(): FilterOperator
     {
-        if (ValueMultiplier::isSupportedOperator($this->aspect->operator())) {
-            return ValueMultiplier::transformOperator($this->aspect);
+        if (ValueMultiplier::isSupportedOperator($this->operator)) {
+            return ValueMultiplier::transform($this->operator);
         }
 
-        return $this->aspect->operator();
+        return $this->operator;
     }
 
     private function format(string $value): mixed
     {
-        if (ValueMultiplier::canApplyFor($this->aspect, $value)) {
+        if (ValueMultiplier::canApplyFor($this->operator, $value)) {
             return ValueMultiplier::format($this->aspect, $value);
         }
 
