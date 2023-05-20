@@ -30,7 +30,9 @@
     "vaened/php-criteria-core": "^0.3.0",
     "laravel/framework": "^9.52",
     "vaened/support": "^0.2.0",
-    "lambdish/phunctional": "^2.1",
+    "lambdish/phunctional": "^2.1"
+  },
+  "require-dev": {
     "orchestra/testbench": "^7.24"
   }
 }
