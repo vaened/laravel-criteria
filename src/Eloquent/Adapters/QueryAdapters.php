@@ -7,12 +7,16 @@ declare(strict_types=1);
 
 namespace Vaened\Criteria\Eloquent\Adapters;
 
+use Vaened\Support\Types\SecureList;
 
-use Vaened\Support\Types\ArrayObject;
-
-final class QueryAdapters extends ArrayObject
+final class QueryAdapters extends SecureList
 {
-    protected function type(): string
+    public static function from(iterable $adapters): self
+    {
+        return new self($adapters);
+    }
+
+    protected static function type(): string
     {
         return QueryAdapter::class;
     }

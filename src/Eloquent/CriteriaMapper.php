@@ -15,6 +15,10 @@ use Vaened\CriteriaCore\Criteria;
 use Vaened\CriteriaCore\Directives\{Expression, Filter, Scope};
 use Vaened\CriteriaCore\Expressions;
 
+use Vaened\Support\Types\AbstractList;
+
+use Vaened\Support\Types\ArrayList;
+
 use function array_merge;
 use function Lambdish\Phunctional\each;
 
@@ -27,7 +31,7 @@ final class CriteriaMapper
     public function apply(EloquentBuilder $query, ?QueryAdapters $hydrators = null): EloquentBuilder
     {
         $this->applyAllFilters($query);
-        $this->applyQueryHydrators($query, $hydrators ?: QueryAdapters::empty());
+        $this->applyQueryHydrators($query, $hydrators ?: new QueryAdapters(AbstractList::Empty));
         $this->applyLimits($query);
         $this->applyOrder($query);
 
@@ -66,38 +70,38 @@ final class CriteriaMapper
         return static fn(QueryAdapter $adapter) => $adapter->adapt($query);
     }
 
-    private function adapters(): array
+    private function adapters(): ArrayList
     {
-        return array_merge($this->localContexts(), $this->scopedContexts());
+        return $this->localContexts()->merge($this->scopedContexts());
     }
 
-    private function localContexts(): array
+    private function localContexts(): ArrayList
     {
         $local = $this->criteria->scopes()->filter(static fn(Scope $scope) => $scope->isLocal());
 
-        return $local->map(fn(Scope $context) => Compound::create($this->adaptily($context->expressions())));
+        return $local->map(fn(Scope $context) => Compound::create($this->adaptily($context->expressions())->items()));
     }
 
-    private function scopedContexts(): array
+    private function scopedContexts(): ArrayList
     {
         $scoped = $this->criteria->scopes()->filter(static fn(Scope $scope) => !$scope->isLocal());
 
         return $scoped->map(
             fn(Scope $scope) => Compound::related(
                 $scope->name(),
-                $this->adaptily($scope->expressions())
+                $this->adaptily($scope->expressions())->items()
             )
         );
     }
 
-    private function adaptily(Expressions $expressions): array
+    private function adaptily(Expressions $expressions): ArrayList
     {
         return $expressions->flatMap($this->convertToAdapter());
     }
 
     private function convertToAdapter(): callable
     {
-        return static fn(Expression $expression): array => $expression->filters()->map(
+        return static fn(Expression $expression): ArrayList => $expression->filters()->map(
             static fn(Filter $filter): QueryAdapter => QueryAdapterResolver::resolve($filter)
         );
     }

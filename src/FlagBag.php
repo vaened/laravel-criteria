@@ -8,11 +8,16 @@ declare(strict_types=1);
 namespace Vaened\Criteria;
 
 use BackedEnum;
-use Vaened\Support\Types\ArrayObject;
+use Vaened\Support\Types\SecureList;
 
-final class FlagBag extends ArrayObject
+final class FlagBag extends SecureList
 {
-    protected function type(): string
+    public static function from(iterable $flags): self
+    {
+        return new self($flags);
+    }
+
+    protected static function type(): string
     {
         return BackedEnum::class;
     }

@@ -14,8 +14,6 @@ use Vaened\CriteriaCore\Directives\Expression;
 use Vaened\CriteriaCore\Directives\Filter;
 use Vaened\CriteriaCore\Directives\Scope;
 
-use function Lambdish\Phunctional\each;
-
 /**
  * Facilitates the search by flags.
  *
@@ -27,9 +25,11 @@ trait Flagable
 
     public function filter(FlagBag $flags): self
     {
-        $criterias = $this->filtrator()->only($flags);
-
-        each(fn(Scope|Expression|Filter $criteria) => $this->apply($criteria), $criterias);
+        $this->filtrator()
+             ->only($flags)
+             ->each(
+                 fn(Scope|Expression|Filter $criteria) => $this->apply($criteria)
+             );
 
         return $this;
     }

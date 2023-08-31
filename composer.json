@@ -27,9 +27,9 @@
   ],
   "require": {
     "php": "^8.1",
-    "vaened/php-criteria-core": "^0.3.0",
+    "vaened/php-criteria-core": "^0.5.0",
     "laravel/framework": "^9.52",
-    "vaened/support": "^0.2.0",
+    "vaened/support": "^3.2.0",
     "lambdish/phunctional": "^2.1"
   },
   "require-dev": {

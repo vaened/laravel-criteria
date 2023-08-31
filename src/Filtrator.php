@@ -7,18 +7,18 @@ declare(strict_types=1);
 
 namespace Vaened\Criteria;
 
+use Vaened\Support\Types\ArrayList;
+
 use function Lambdish\Phunctional\apply;
-use function Lambdish\Phunctional\map;
 
 abstract class Filtrator
 {
     abstract public function flags(): FilterBag;
 
-    public function only(FlagBag $flags): array
+    public function only(FlagBag $flags): ArrayList
     {
-        return map(
-            fn(callable $criteria) => apply($criteria),
-            $this->flags()->only($flags)
-        );
+        return $this->flags()
+                    ->only($flags)
+                    ->map(static fn(callable $criteria) => apply($criteria));
     }
 }

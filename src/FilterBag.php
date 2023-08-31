@@ -9,6 +9,7 @@ namespace Vaened\Criteria;
 
 use BackedEnum;
 use Vaened\CriteriaCore\Directives\{Expression, Filter, Scope};
+use Vaened\Support\Types\ArrayList;
 
 final class FilterBag
 {
@@ -32,7 +33,7 @@ final class FilterBag
         return $this;
     }
 
-    public function only(FlagBag $flags): array
+    public function only(FlagBag $flags): ArrayList
     {
         return $flags->map(fn(BackedEnum $flag) => $this->get($flag));
     }

@@ -51,7 +51,7 @@ final class ValueMultiplier
 
     public static function format(Aspect $aspect, string $value): array
     {
-        return ArrayList::from(explode(self::SEPARATOR, $value))
+        return (new ArrayList(explode(self::SEPARATOR, $value)))
             ->map(static fn(string $val) => trim($val))
             ->filter(static fn(string $val) => $aspect->evaluate($val))
             ->map(static fn(string $val) => $aspect->formatValue($val))
