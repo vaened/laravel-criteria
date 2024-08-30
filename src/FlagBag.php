@@ -17,7 +17,7 @@ final class FlagBag extends SecureList
         return new self($flags);
     }
 
-    protected static function type(): string
+    public static function type(): string
     {
         return BackedEnum::class;
     }

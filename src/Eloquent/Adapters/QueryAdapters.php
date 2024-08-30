@@ -16,7 +16,7 @@ final class QueryAdapters extends SecureList
         return new self($adapters);
     }
 
-    protected static function type(): string
+    public static function type(): string
     {
         return QueryAdapter::class;
     }
