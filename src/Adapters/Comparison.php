@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace Vaened\Criteria\Eloquent\Adapters;
+namespace Vaened\Criteria\Adapters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Vaened\CriteriaCore\Keyword\FilterOperator;

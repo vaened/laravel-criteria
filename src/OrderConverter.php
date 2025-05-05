@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace Vaened\Criteria\Eloquent;
+namespace Vaened\Criteria;
 
 use InvalidArgumentException;
 use Vaened\CriteriaCore\Keyword\OrderType;

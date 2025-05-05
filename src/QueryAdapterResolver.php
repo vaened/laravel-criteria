@@ -5,13 +5,13 @@
 
 declare(strict_types=1);
 
-namespace Vaened\Criteria\Eloquent;
+namespace Vaened\Criteria;
 
 use InvalidArgumentException;
-use Vaened\Criteria\Eloquent\Adapters\Comparison;
-use Vaened\Criteria\Eloquent\Adapters\Contains;
-use Vaened\Criteria\Eloquent\Adapters\QueryAdapter;
-use Vaened\Criteria\Eloquent\Adapters\Range;
+use Vaened\Criteria\Adapters\Comparison;
+use Vaened\Criteria\Adapters\Contains;
+use Vaened\Criteria\Adapters\QueryAdapter;
+use Vaened\Criteria\Adapters\Range;
 use Vaened\CriteriaCore\Directives\Filter;
 use Vaened\CriteriaCore\Keyword\FilterOperator;
 

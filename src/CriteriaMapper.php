@@ -5,21 +5,18 @@
 
 declare(strict_types=1);
 
-namespace Vaened\Criteria\Eloquent;
+namespace Vaened\Criteria;
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Vaened\Criteria\Eloquent\Adapters\Compound;
-use Vaened\Criteria\Eloquent\Adapters\QueryAdapter;
-use Vaened\Criteria\Eloquent\Adapters\QueryAdapters;
+use Vaened\Criteria\Adapters\Compound;
+use Vaened\Criteria\Adapters\QueryAdapter;
+use Vaened\Criteria\Adapters\QueryAdapters;
 use Vaened\CriteriaCore\Criteria;
 use Vaened\CriteriaCore\Directives\{Expression, Filter, Scope};
 use Vaened\CriteriaCore\Expressions;
-
 use Vaened\Support\Types\AbstractList;
-
 use Vaened\Support\Types\ArrayList;
 
-use function array_merge;
 use function Lambdish\Phunctional\each;
 
 final class CriteriaMapper

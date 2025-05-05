@@ -10,10 +10,9 @@ namespace Vaened\Criteria;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
-use Vaened\Criteria\Eloquent\Adapters\ExistRelation;
-use Vaened\Criteria\Eloquent\Adapters\QueryAdapter;
-use Vaened\Criteria\Eloquent\Adapters\QueryAdapters;
-use Vaened\Criteria\Eloquent\CriteriaMapper;
+use Vaened\Criteria\Adapters\ExistRelation;
+use Vaened\Criteria\Adapters\QueryAdapter;
+use Vaened\Criteria\Adapters\QueryAdapters;
 use Vaened\SearchEngine\AbstractSearchEngine;
 
 use function array_merge;

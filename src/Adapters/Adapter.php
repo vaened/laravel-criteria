@@ -5,10 +5,10 @@
 
 declare(strict_types=1);
 
-namespace Vaened\Criteria\Eloquent\Adapters;
+namespace Vaened\Criteria\Adapters;
 
 use InvalidArgumentException;
-use Vaened\Criteria\Eloquent\OperatorConverter;
+use Vaened\Criteria\OperatorConverter;
 use Vaened\CriteriaCore\Directives\Filter;
 use Vaened\CriteriaCore\Keyword\FilterOperator;
 

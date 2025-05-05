@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace Vaened\Criteria\Eloquent\Adapters;
+namespace Vaened\Criteria\Adapters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Vaened\CriteriaCore\Keyword\FilterOperator;
@@ -29,6 +29,16 @@ final class Range extends Adapter
         };
     }
 
+    public function supportOperators(): array
+    {
+        return [
+            FilterOperator::In,
+            FilterOperator::NotIn,
+            FilterOperator::Between,
+            FilterOperator::NotBetween,
+        ];
+    }
+
     private function between(array $values): callable
     {
         return fn(Builder $query) => $query->whereBetween(...$this->params($values, FilterOperator::NotBetween));
@@ -46,16 +56,6 @@ final class Range extends Adapter
             $values,
             'and',
             $this->operatorIs($operator)
-        ];
-    }
-
-    public function supportOperators(): array
-    {
-        return [
-            FilterOperator::In,
-            FilterOperator::NotIn,
-            FilterOperator::Between,
-            FilterOperator::NotBetween,
         ];
     }
 }
