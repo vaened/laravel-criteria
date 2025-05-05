@@ -37,7 +37,9 @@ abstract class Adapter implements QueryAdapter
     private function ensureOperatorsAreSupported(FilterOperator $operator): void
     {
         if (!$this->isSupportedOperator($operator)) {
-            throw new InvalidArgumentException(sprintf('The constraint <%s> cannot handle this operator', static::class));
+            throw new InvalidArgumentException(
+                sprintf('The constraint <%s> cannot handle <%s> operator', static::class, $operator->name)
+            );
         }
     }
 
