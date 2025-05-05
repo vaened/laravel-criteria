@@ -31,7 +31,7 @@ final class Comparison extends Adapter
             FilterOperator::Gt,
             FilterOperator::Gte,
             FilterOperator::Lt,
-            FilterOperator::Gte,
+            FilterOperator::Lte,
         ];
     }
 }
