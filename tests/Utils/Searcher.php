@@ -7,22 +7,22 @@ namespace Vaened\Criteria\Tests\Utils;
 
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Builder;
-use Vaened\Criteria\Concerns\Flagable;
-use Vaened\Criteria\Concerns\Indexed;
-use Vaened\Criteria\Filtrator;
-use Vaened\Criteria\indexer;
 use Vaened\Criteria\SearchEngine;
-use Vaened\Criteria\Tests\Utils\Criterias;
 use Vaened\Criteria\Tests\Utils\Models\Patient;
+use Vaened\SearchEngine\Concerns\Flaggable;
+use Vaened\SearchEngine\Concerns\Indexable;
+use Vaened\SearchEngine\Flagger;
+use Vaened\SearchEngine\Indexer;
 
 class Searcher extends SearchEngine
 {
-    use Flagable, Indexed;
+    use Flaggable, Indexable;
 
     public function __construct(
         private readonly IndexRepository $index,
         private readonly FlagFiltrator   $filter
-    ) {
+    )
+    {
         $this->apply(Criterias\PatientDeletionDate::without());
     }
 
@@ -101,13 +101,13 @@ class Searcher extends SearchEngine
         return Patient::query();
     }
 
-    protected function filtrator(): Filtrator
-    {
-        return $this->filter;
-    }
-
-    protected function indexer(): indexer
+    protected function indexer(): Indexer
     {
         return $this->index;
+    }
+
+    protected function flagger(): Flagger
+    {
+        return $this->filter;
     }
 }

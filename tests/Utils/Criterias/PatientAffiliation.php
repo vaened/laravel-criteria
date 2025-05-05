@@ -10,8 +10,6 @@ namespace Vaened\Criteria\Tests\Utils\Criterias;
 use DateTimeInterface;
 use Vaened\CriteriaCore\Keyword\FilterOperator;
 
-use function dd;
-
 final class PatientAffiliation extends Statement
 {
     private function __construct(FilterOperator $operator, mixed $value)

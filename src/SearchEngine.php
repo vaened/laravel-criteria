@@ -14,30 +14,22 @@ use Vaened\Criteria\Eloquent\Adapters\ExistRelation;
 use Vaened\Criteria\Eloquent\Adapters\QueryAdapter;
 use Vaened\Criteria\Eloquent\Adapters\QueryAdapters;
 use Vaened\Criteria\Eloquent\CriteriaMapper;
-use Vaened\CriteriaCore\Criteria;
-use Vaened\CriteriaCore\Directives\Expression;
-use Vaened\CriteriaCore\Directives\Filter;
-use Vaened\CriteriaCore\Directives\Scope;
-use Vaened\CriteriaCore\Keyword\Order;
+use Vaened\SearchEngine\AbstractSearchEngine;
 
 use function array_merge;
 
 /**
  * @template TModel
  */
-abstract class SearchEngine
+abstract class SearchEngine extends AbstractSearchEngine
 {
-    protected array $preload = [];
+    protected array $preload   = [];
 
-    protected array $unload = [];
+    protected array $unload    = [];
 
-    protected int $limit = 0;
+    protected int   $limit     = 0;
 
-    private array $criterias = [];
-
-    private array $hydrators = [];
-
-    private ?Order $order = null;
+    private array   $hydrators = [];
 
     abstract protected function query(): EloquentBuilder;
 
@@ -55,14 +47,7 @@ abstract class SearchEngine
 
     public function limit(int $limit): static
     {
-        $this->limit = $limit;
-        return $this;
-    }
-
-    public function orderBy(Order $order): static
-    {
-        $this->order = $order;
-        return $this;
+        return $this->perPage($limit);
     }
 
     public function paginate(int $perPage = 15): LengthAwarePaginator
@@ -91,11 +76,6 @@ abstract class SearchEngine
         $this->adapt(new ExistRelation($relation));
     }
 
-    protected function apply(Scope|Expression|Filter $criteria): void
-    {
-        $this->criterias[] = $criteria;
-    }
-
     protected function adapt(QueryAdapter $hydrator): void
     {
         $this->hydrators[] = $hydrator;
@@ -104,7 +84,7 @@ abstract class SearchEngine
     protected function compoundQuery(): EloquentBuilder
     {
         return $this->mapper()->apply(
-            query: $this->query()->with($this->preload)->without($this->unload),
+            query    : $this->query()->with($this->preload)->without($this->unload),
             hydrators: QueryAdapters::from($this->hydrators)
         );
     }
@@ -112,14 +92,5 @@ abstract class SearchEngine
     private function mapper(): CriteriaMapper
     {
         return new CriteriaMapper($this->criteria());
-    }
-
-    private function criteria(): Criteria
-    {
-        return new Criteria(
-            $this->criterias,
-            $this->order,
-            $this->limit,
-        );
     }
 }

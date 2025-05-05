@@ -5,9 +5,9 @@
 
 namespace Vaened\Criteria\Tests;
 
-use Vaened\Criteria\FlagBag;
-use Vaened\Criteria\Tests\Utils\PatientFlag;
 use Vaened\Criteria\Tests\Utils\Models\Patient;
+use Vaened\Criteria\Tests\Utils\PatientFlag;
+use Vaened\SearchEngine\FlagBag;
 
 class FiltersTest extends DataBaseTestCase
 {

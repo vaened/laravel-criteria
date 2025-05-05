@@ -6,18 +6,18 @@
 namespace Vaened\Criteria\Tests\Utils;
 
 use Closure;
-use Vaened\Criteria\FilterBag;
-use Vaened\Criteria\Filtrator;
 use Vaened\Criteria\Tests\Utils\Criterias\PatientObservation;
 use Vaened\Criteria\Tests\Utils\Criterias\PatientScope;
+use Vaened\SearchEngine\FilterBag;
+use Vaened\SearchEngine\Flagger;
 
-class FlagFiltrator extends Filtrator
+class FlagFiltrator extends Flagger
 {
     public function flags(): FilterBag
     {
         return FilterBag::open()
-            ->register(PatientFlag::Observed, $this->onlyObserved())
-            ->register(PatientFlag::WithAccount, $this->onlyWithAccount());
+                        ->register(PatientFlag::Observed, $this->onlyObserved())
+                        ->register(PatientFlag::WithAccount, $this->onlyWithAccount());
     }
 
     private function onlyObserved(): Closure
