@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03c23e2ec190257672a3a5b8e4fb522b",
+    "content-hash": "10a39dd4bc9a1bdda37289383099c175",
     "packages": [
         {
             "name": "brick/math",
@@ -5692,16 +5692,16 @@
         },
         {
             "name": "vaened/php-criteria-core",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vaened/php-criteria-core.git",
-                "reference": "00e8f25a80a73983f2b0807a2d3804039e9cfe74"
+                "reference": "257ff5f12d5d83067418a3013871b9a7c6a9ea80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vaened/php-criteria-core/zipball/00e8f25a80a73983f2b0807a2d3804039e9cfe74",
-                "reference": "00e8f25a80a73983f2b0807a2d3804039e9cfe74",
+                "url": "https://api.github.com/repos/vaened/php-criteria-core/zipball/257ff5f12d5d83067418a3013871b9a7c6a9ea80",
+                "reference": "257ff5f12d5d83067418a3013871b9a7c6a9ea80",
                 "shasum": ""
             },
             "require": {
@@ -5737,27 +5737,27 @@
             ],
             "support": {
                 "issues": "https://github.com/vaened/php-criteria-core/issues",
-                "source": "https://github.com/vaened/php-criteria-core/tree/v1.0.3"
+                "source": "https://github.com/vaened/php-criteria-core/tree/v1.0.4"
             },
-            "time": "2025-12-31T16:01:37+00:00"
+            "time": "2025-12-31T19:32:29+00:00"
         },
         {
             "name": "vaened/php-search-engine",
-            "version": "v0.6.2",
+            "version": "v0.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vaened/php-search-engine.git",
-                "reference": "21ea488e7749699186006b764de1829c20588b0d"
+                "reference": "ef45993ffb9f4265ec7562b935d6c36c13e26cbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vaened/php-search-engine/zipball/21ea488e7749699186006b764de1829c20588b0d",
-                "reference": "21ea488e7749699186006b764de1829c20588b0d",
+                "url": "https://api.github.com/repos/vaened/php-search-engine/zipball/ef45993ffb9f4265ec7562b935d6c36c13e26cbc",
+                "reference": "ef45993ffb9f4265ec7562b935d6c36c13e26cbc",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.1",
-                "vaened/php-criteria-core": "^1.0.3",
+                "vaened/php-criteria-core": "^1.0.4",
                 "vaened/support": "^4.0"
             },
             "type": "library",
@@ -5787,9 +5787,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vaened/php-search-engine/issues",
-                "source": "https://github.com/vaened/php-search-engine/tree/v0.6.2"
+                "source": "https://github.com/vaened/php-search-engine/tree/v0.6.3"
             },
-            "time": "2025-12-31T16:05:38+00:00"
+            "time": "2025-12-31T19:36:12+00:00"
         },
         {
             "name": "vaened/support",

@@ -9,7 +9,7 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Vaened\Criteria\SearchEngine;
 use Vaened\Criteria\Tests\Utils\Models\Patient;
-use Vaened\CriteriaCore\Predicate;
+use Vaened\CriteriaCore\Batch;
 use Vaened\SearchEngine\Concerns\Flaggable;
 use Vaened\SearchEngine\Concerns\Indexable;
 use Vaened\SearchEngine\Flagger;
@@ -37,7 +37,7 @@ class Searcher extends SearchEngine
 
     public function onlyObservedHistory(string $clinicHistory): self
     {
-        $this->apply(Predicate::group(
+        $this->apply(Batch::group(
             Criterias\PatientClinicHistory::equals($clinicHistory),
             Criterias\PatientObservation::isNotNull()
         ));
