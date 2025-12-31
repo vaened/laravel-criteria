@@ -94,4 +94,11 @@ class SearcheableTest extends DataBaseTestCase
         $result = $this->searcher()->limit(2);
         $this->assertCount(2, $result->get());
     }
+
+    public function test_search_by_observed_history(): void
+    {
+        $result = $this->searcher()->onlyObservedHistory('0000002');
+
+        $this->assertCount(1, $result->get());
+    }
 }

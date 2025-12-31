@@ -9,6 +9,7 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Vaened\Criteria\SearchEngine;
 use Vaened\Criteria\Tests\Utils\Models\Patient;
+use Vaened\CriteriaCore\Predicate;
 use Vaened\SearchEngine\Concerns\Flaggable;
 use Vaened\SearchEngine\Concerns\Indexable;
 use Vaened\SearchEngine\Flagger;
@@ -31,6 +32,15 @@ class Searcher extends SearchEngine
         $this->apply(
             Criterias\PatientAffiliation::between($start, $end)
         );
+        return $this;
+    }
+
+    public function onlyObservedHistory(string $clinicHistory): self
+    {
+        $this->apply(Predicate::group(
+            Criterias\PatientClinicHistory::equals($clinicHistory),
+            Criterias\PatientObservation::isNotNull()
+        ));
         return $this;
     }
 
