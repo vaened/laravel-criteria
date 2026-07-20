@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -47,18 +47,10 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Select Laravel ${{ matrix.laravel }}
-        uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-update --no-interaction
+        run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-update --no-interaction
 
       - name: Install dependencies
-        uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: composer update --no-interaction --no-progress ${{ matrix.composer_no_blocking && '--no-blocking' || '' }}
+        run: composer update --no-interaction --no-progress ${{ matrix.composer_no_blocking && '--no-blocking' || '' }}
 
       - name: Run tests for Laravel ${{ matrix.laravel }}
         run: vendor/bin/phpunit
